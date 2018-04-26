@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Nav from './Nav';
+
 function Result(props) {
     return (
         props.users.map((user)=>{
             return(
-                <ul key={user._id}>
+                <ul className='users' key={user._id}>
                 <div className="card-body">
                     <h5 className="card-title">{user.name}</h5>
                     <p className="card-text">{user.jobtitle}</p>
@@ -36,7 +38,7 @@ class Users extends Component {
     render() {
         return (
             <div>
-            <Link className='btn btn-warning' to='/' onClick={this.logoutHandler}> Logout</Link>
+            <Nav/>
             {this.state.users && <Result users ={this.state.users} />}
             
             </div>

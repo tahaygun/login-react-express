@@ -3,7 +3,7 @@ const authUser= usersController.authenticateUser;
 module.exports= function (app) {
     app.get('/ping', (req,res)=>res.send('poing'));
 
-    app.post('/api/register', usersController.createUser );
+    app.post('/api/register',usersController.validation, usersController.createUser );
 
     app.get("/api/users/", authUser,  usersController.getAllUsers);
     

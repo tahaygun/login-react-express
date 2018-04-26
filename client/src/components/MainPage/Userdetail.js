@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Nav from './Nav';
 axios.defaults.withCredentials = true
 function Detail(props) {
     var data= props.userData;
@@ -32,6 +33,7 @@ class Userdetail extends Component {
     render() {
         return (
             <div>
+            <Nav/>
             {this.state.userinfo && <Detail userData={this.state.userinfo} />}
             </div>
         );

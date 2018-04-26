@@ -10,17 +10,20 @@ export default class Register extends Component {
         password:'',
         jobtitle:'',
       },
-      err:null
+      err:null,
+      errors:null
     }
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
   }
   
-  submitHandler(){
-    console.log(this.state.data);
+  submitHandler(e){
+    e.preventDefault();
     axios.post("http://localhost:8000/api/register", this.state.data).then((res)=>{
-      if(res.data.err){
-       return this.setState({err:res.data.err})
+      console.log(res.data.errors);
+      if(res.data.errors){
+        console.log('noo');
+       return this.setState({errors:res.data.errors})
       }
       if(res.data.ok){
         return this.setState({err:"Succesfully registerated"})
@@ -46,17 +49,22 @@ export default class Register extends Component {
         <div className="row">
             <div className="col">
               <input type="text" onChange={this.changeHandler} name='name' className="form-control" value={this.state.data.name} placeholder="Name"/>
+              {this.state.errors && this.state.errors.name && <p className="text-danger"> {this.state.errors.name.msg}</p>}
+            
           </div>
           <div className="col">
               <input type="email" onChange={this.changeHandler} name='email' className="form-control" value={this.state.data.email} placeholder="Email"/>
+              {this.state.errors && this.state.errors.email && <p className="text-danger"> {this.state.errors.email.msg}</p>}
           </div>
         </div>
         <div className="row">
             <div className="col">
               <input type="text" onChange={this.changeHandler} name='jobtitle' className="form-control" value={this.state.data.jobtitle} placeholder="Job Title"/>
+              {this.state.errors && this.state.errors.jobtitle && <p className="text-danger"> {this.state.errors.jobtitle.msg}</p>}              
           </div>
           <div className="col">
               <input type="password" onChange={this.changeHandler} name='password' className="form-control" value={this.state.data.password} placeholder="Password"/>
+              {this.state.errors && this.state.errors.password && <p className="text-danger"> {this.state.errors.password.msg}</p>}
           </div>
         </div>
         <button type='submit' className="btn btn-primary">Submit</button>

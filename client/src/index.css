@@ -4,5 +4,16 @@ body {
   font-family: sans-serif;
 }
 .col{
+  margin-top: 0px;
+}
+.logoutButton{
+  float: right;
+  margin-right: 200px;
+}
+.btn-warning{
   margin: 10px;
+}
+.users{
+  margin: auto;
+  text-align: center;
 }
