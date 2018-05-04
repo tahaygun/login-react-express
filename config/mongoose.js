@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 //connect tothe database
 //remember to change the database
-mongoose.connect("mongodb://root:root@ds131989.mlab.com:31989/todo");
+mongoose.connect(//YOUR DATABASE CONNECTION);
 
 //load all model files
 var models_path=__dirname+'/../models'
